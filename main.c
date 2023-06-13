@@ -6,7 +6,7 @@
 /*   By: bcastelo <bcastelo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 18:03:05 by bcastelo          #+#    #+#             */
-/*   Updated: 2023/06/13 18:18:48 by bcastelo         ###   ########.fr       */
+/*   Updated: 2023/06/13 18:29:42 by bcastelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 int	main(int argc, char **argv)
 {
 	ft_printf("Inputs: %i Program name: %s\n", argc, argv[0]);
-	return (0):
+	return (0);
 }
