@@ -6,7 +6,7 @@
 /*   By: bcastelo <bcastelo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 18:03:05 by bcastelo          #+#    #+#             */
-/*   Updated: 2023/06/26 18:10:03 by bcastelo         ###   ########.fr       */
+/*   Updated: 2023/06/26 19:47:27 by bcastelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ int	main(int argc, char **argv, char **env)
 	t_pipex	params;
 
 	if (argc != 5)
+	{
+		ft_putendl_fd("Wrong number of arguments!", 2);
 		exit(0);
+	}
 	get_params(argc, argv, env, &params);
 	process_commands(params);
 	clean_params(&params);

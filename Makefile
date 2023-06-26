@@ -19,10 +19,6 @@ $(LIBFT):
 	@cp libft/libft.h .
 	@echo "libft.a compiled and imported"
 
-.PHONY: clean fclean re all bonus
-
-bonus: re
-
 clean:
 	rm -f *.o
 
@@ -35,3 +31,5 @@ ifneq (,$(wildcard libft/))
 endif
 
 re: fclean all
+
+.PHONY: clean fclean re all
