@@ -6,7 +6,7 @@
 /*   By: bcastelo <bcastelo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 23:53:42 by bcastelo          #+#    #+#             */
-/*   Updated: 2023/06/26 14:24:24 by bcastelo         ###   ########.fr       */
+/*   Updated: 2023/06/26 17:32:02 by bcastelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	duplicate_fd(int fd, int new_fd);
 
 void	get_params(int argc, char **argv, char **env, t_pipex *params);
 
-void	error_exit(void);
+void	error_exit(t_pipex *params);
 
 void	free_memory(char **array);
 

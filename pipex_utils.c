@@ -6,7 +6,7 @@
 /*   By: bcastelo <bcastelo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:20:33 by bcastelo          #+#    #+#             */
-/*   Updated: 2023/06/26 14:23:45 by bcastelo         ###   ########.fr       */
+/*   Updated: 2023/06/26 18:22:08 by bcastelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ char	*get_command_path(char *command, char **env_paths)
 		env_paths++;
 	}
 	free_memory(command_items);
-	free(path);
 	return (NULL);
 }
 
@@ -44,14 +43,16 @@ void	duplicate_fd(int fd, int new_fd)
 	if (fd != new_fd)
 	{
 		if (dup2(fd, new_fd) == -1)
-			error_exit();
+			error_exit(NULL);
 		close(fd);
 	}
 }
 
-void	error_exit(void)
+void	error_exit(t_pipex *params)
 {
 	perror("pipex");
+	if (params != NULL)
+		clean_params(params);
 	exit(0);
 }
 
@@ -70,8 +71,14 @@ void	free_memory(char **array)
 
 void	clean_params(t_pipex *params)
 {
-	free_memory(params->env_paths);
-	params->env_paths = NULL;
-	free_memory(params->commands_paths);
-	params->commands_paths = NULL;
+	if (params->env_paths != NULL)
+	{
+		free_memory(params->env_paths);
+		params->env_paths = NULL;
+	}	
+	if (params->commands_paths != NULL)
+	{
+		free_memory(params->commands_paths);
+		params->commands_paths = NULL;
+	}
 }

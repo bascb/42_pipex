@@ -6,7 +6,7 @@
 /*   By: bcastelo <bcastelo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 18:03:05 by bcastelo          #+#    #+#             */
-/*   Updated: 2023/06/26 14:50:57 by bcastelo         ###   ########.fr       */
+/*   Updated: 2023/06/26 18:10:03 by bcastelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ void	process_commands(t_pipex params)
 	pid_t	pid;
 
 	if (pipe(pipe_fds) == -1)
-		error_exit();
+		error_exit(&params);
 	i = 0;
 	while (i < params.total_commands)
 	{	
 		pid = fork();
 		if (pid == -1)
-			error_exit();
+			error_exit(&params);
 		if (pid == 0)
 			exec_command(pipe_fds, params, i);
 		i++;
@@ -74,7 +74,7 @@ void	exec_command(int pipe_fds[2], t_pipex params, int i)
 	command_items = ft_split(params.commands[i], ' ');
 	command_path = (const char *)params.commands_paths[i];
 	execve(command_path, command_items, params.env);
-	error_exit();
+	error_exit(NULL);
 }
 
 char	**get_commands_paths(char **commands,
@@ -116,7 +116,7 @@ void	get_params(int argc, char **argv, char **env, t_pipex *params)
 	params->outfile_fd = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC,
 			S_IRUSR | S_IWUSR);
 	if (params->infile_fd == -1 || params->outfile_fd == -1)
-		error_exit();
+		error_exit(NULL);
 	params->env_paths = NULL;
 	while (*env != NULL)
 	{
@@ -128,9 +128,9 @@ void	get_params(int argc, char **argv, char **env, t_pipex *params)
 		env++;
 	}
 	if (params->env_paths == NULL)
-		error_exit();
+		error_exit(NULL);
 	params->commands_paths = get_commands_paths(params->commands,
 			params->total_commands, params->env_paths);
 	if (params->commands_paths == NULL)
-		error_exit();
+		error_exit(params);
 }
