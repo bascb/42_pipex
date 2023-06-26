@@ -1,6 +1,7 @@
 NAME = pipex
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
+SRC = pipex pipex_utils
 LIBFT = libft.a
 
 RED = \033[0;91m
@@ -9,11 +10,8 @@ YELLOW = \033[0;93m
 	
 all: $(NAME)
 
-%.o: %.c
-	$(CC) -c $(CFLAGS) $^
-
-$(NAME): *.o $(LIBFT)
-	$(CC) $(CFLAGS) -o $(NAME) $^
+$(NAME): $(LIBFT) $(SRC:=.o)
+	$(CC) $(CFLAGS) -o $(NAME) $(SRC:=.o) $(LIBFT)
 	
 $(LIBFT):
 	@$(MAKE) -C libft bonus
