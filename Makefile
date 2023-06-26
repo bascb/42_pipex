@@ -1,5 +1,5 @@
 NAME = pipex
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Werror -Wextra
 SRC = pipex pipex_utils
 LIBFT = libft.a
@@ -17,7 +17,7 @@ $(LIBFT):
 	@$(MAKE) -C libft bonus
 	@cp libft/libft.a .
 	@cp libft/libft.h .
-	@echo "$(GREEN)libft.a compiled and imported"
+	@echo "libft.a compiled and imported"
 
 .PHONY: clean fclean re all bonus
 

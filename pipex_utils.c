@@ -6,7 +6,7 @@
 /*   By: bcastelo <bcastelo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:20:33 by bcastelo          #+#    #+#             */
-/*   Updated: 2023/06/26 18:22:08 by bcastelo         ###   ########.fr       */
+/*   Updated: 2023/06/26 19:18:34 by bcastelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,6 @@ void	clean_params(t_pipex *params)
 		free_memory(params->commands_paths);
 		params->commands_paths = NULL;
 	}
+	close(params->infile_fd);
+	close(params->outfile_fd);
 }
